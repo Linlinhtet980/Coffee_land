@@ -57,10 +57,21 @@
             <p>Hand-crafted beverages made with love and passion.</p>
         </div>
 
+        <div class="category-filter">
+            <button class="filter-btn active" data-filter="all">All Items</button>
+            <?php if (!empty($categories)): ?>
+                <?php foreach ($categories as $cat): ?>
+                    <button class="filter-btn" data-filter="<?= htmlspecialchars($cat['name']) ?>">
+                        <?= htmlspecialchars($cat['name']) ?>
+                    </button>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+
         <div class="menu-grid">
             <?php if (!empty($items)): ?>
                 <?php foreach ($items as $item): ?>
-                    <div class="product-card">
+                    <div class="product-card" data-category="<?= htmlspecialchars($item['category_name'] ?: 'Coffee') ?>">
                         <div class="card-image">
                             <span class="category-tag">
                                 <?= htmlspecialchars($item['category_name'] ?: 'Coffee') ?>
@@ -259,6 +270,50 @@
                 btn.innerHTML = '<i class="fas fa-shopping-bag"></i> Confirm Order';
             }
         }
+        // Category Filter Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const cards = document.querySelectorAll('.product-card');
+
+            function showDefault() {
+                let categoryCounts = {};
+                cards.forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+                    
+                    if (categoryCounts[cat] <= 6) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Initialize default view
+            showDefault();
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Update active state
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    if (filter === 'all') {
+                        showDefault();
+                    } else {
+                        cards.forEach(card => {
+                            if (card.getAttribute('data-category') === filter) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </body>
 
