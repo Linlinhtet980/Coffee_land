@@ -1,0 +1,118 @@
+/* Navbar Styling */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 5%;
+    background: rgba(15, 15, 15, 0.8);
+    backdrop-filter: blur(1.25rem);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 0.0625rem solid var(--border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-dim);
+    font-weight: 500;
+    transition: 0.3s;
+    font-size: 0.95rem;
+}
+
+nav ul li a:hover {
+    color: var(--primary);
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.show_point {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--glass);
+    padding: 0.5rem 1rem;
+    border-radius: 3.125rem;
+    border: 0.0625rem solid var(--border);
+}
+
+.show_point p {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin: 0;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    cursor: pointer;
+}
+
+.profile i {
+    font-size: 1.2rem;
+    color: var(--text-dim);
+}
+
+.profile .name {
+    margin: 0;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+}
+
+/* Notification Icon Styling */
+.noti-order {
+    position: relative;
+    cursor: pointer;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.noti-order:hover {
+    color: var(--primary);
+}
+
+.noti-order .badge {
+    position: absolute;
+    top: -0.5rem;
+    right: -0.5rem;
+    background: var(--primary);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.125rem 0.375rem;
+    border-radius: 3.125rem;
+    border: 0.125rem solid var(--bg);
+    min-width: 1.125rem;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+}

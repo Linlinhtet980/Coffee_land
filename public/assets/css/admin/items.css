@@ -1,0 +1,403 @@
+/* Google အက္ခရာစာလုံးများ (Fonts) ကို ရယူသုံးစွဲခြင်း */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+/* Coffee Theme အတွက် အသုံးများသော အရောင်များကို သတ်မှတ်ထားခြင်း */
+:root {
+  --bg-color: #f3f4f6;
+  --sidebar-bg: #f9fafb;
+  --text-main: #1f2937;
+  --text-muted: #6b7280;
+  --primary-color: #5c3a21; /* Coffee Brown */
+  --primary-hover: #4a2c16;
+  --surface-color: #ffffff;
+  --border-color: #e5e7eb;
+  
+  /* အမှတ်အသား (Badge) အရောင်များ */
+  --badge-blue-bg: #dbeafe;
+  --badge-blue-text: #1d4ed8;
+  --badge-green-bg: #dcfce7;
+  --badge-green-text: #15803d;
+  --badge-brown-bg: #fef3c7; /* light amberish/brownish */
+  --badge-brown-text: #b45309;
+  --badge-espresso-bg: #f3e8ff;
+  --badge-espresso-text: #7e22ce;
+  --badge-active-bg: #dcfce7;
+  --badge-active-text: #166534;
+}
+
+html{
+  scroll-behavior: smooth;
+  font-size: 1rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+}
+
+/* စာမျက်နှာ အပြင်အဆင် အပိုင်း (Layout) */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ညာဘက် အဓိက အကြောင်းအရာများ ပြသမည့် အပိုင်း */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ခေါင်းစီးပိုင်း (Header) */
+.top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background-color: var(--bg-color);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.btn {
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--surface-color);
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid var(--border-color);
+  width: 15.625rem;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+  color: var(--text-main);
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-icon {
+  position: relative;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.notification-icon .badge {
+  position: absolute;
+  top: -0.3125rem;
+  right: -0.3125rem;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.625rem;
+  font-weight: bold;
+  height: 1rem;
+  width: 1rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 0.125rem solid var(--surface-color);
+}
+
+/* ပစ္စည်းစာရင်းများ ပြသမည့် အကွက် */
+.items-list-container {
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* စာရင်းများကို အကွက် (Grid) ချ၍ ပြသခြင်း */
+.list-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 1fr 1fr 0.5fr;
+  padding: 1rem 1.5rem;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  align-items: center;
+}
+
+/* Exchange List အတွက် သီးသန့် Grid (5 columns) */
+.grid-exchange {
+  grid-template-columns: 2.8fr 1.2fr 1.2fr 1.8fr 0.6fr !important;
+  padding: 1.25rem 1.5rem !important;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 0.8fr 1fr 1fr 0.5fr;
+  padding: 1rem 1.5rem;
+  background-color: var(--surface-color);
+  border-radius: 0.75rem;
+  border: 0.0625rem solid var(--border-color);
+  align-items: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.item-row:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1), 0 0.125rem 0.25rem -0.0625rem rgba(0, 0, 0, 0.06);
+}
+
+/* ကော်လံများအလိုက် သီးသန့် အလှဆင်ခြင်း */
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}.item-name {
+  font-weight: 600;
+}
+
+.old-price {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.new-price {
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.point-text {
+  font-weight: 600;
+  color: #b45309; /* warm color for points */
+}
+
+/* အမှတ်အသားများ (Badges) */
+.badge-category {
+  padding: 0.375rem 0.75rem;
+  border-radius: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge-blue { background-color: var(--badge-blue-bg); color: var(--badge-blue-text); }
+.badge-green { background-color: var(--badge-green-bg); color: var(--badge-green-text); }
+.badge-brown { background-color: var(--badge-brown-bg); color: var(--badge-brown-text); }
+.badge-espresso { background-color: var(--badge-espresso-bg); color: var(--badge-espresso-text); }
+
+.badge-status {
+  padding: 0.375rem 0.75rem;
+  border-radius: 1.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  background-color: var(--badge-active-bg);
+  color: var(--badge-active-text);
+}
+
+/* ပြုလုပ်နိုင်သော ခလုတ်များ (Actions) */
+.action-icons {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 1rem;
+  transition: color 0.2s;
+}
+
+.edit-btn:hover { color: var(--primary-color); }
+.delete-btn:hover { color: #ef4444; }
+
+/* စာမျက်နှာ ခွဲခြားခြင်း (Pagination) */
+.pagination-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  margin-top: auto;
+}
+
+.showing-text {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.showing-text strong {
+  color: var(--text-main);
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.375rem;
+  background-color: var(--surface-color);
+  border: 0.0625rem solid var(--border-color);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.page-link:hover:not(.disabled) {
+  background-color: var(--bg-color);
+}
+
+.page-link.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* အပေါ်မှ ကျလာမည့် ဖောင်ပိုင်း (Modals) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-box {
+  background-color: var(--surface-color);
+  width: 100%;
+  max-width: 31.25rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 1.25rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.1), 0 0.625rem 0.625rem -0.3125rem rgba(0, 0, 0, 0.04);
+  padding: 1.5rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: red;
+}
+
+/* ဒေတာဖြည့်သွင်းရန် ဖောင် (Forms) */
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.625rem 0.75rem;
+  border: 0.0625rem solid var(--border-color);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.875rem;
+  color: var(--text-main);
+  background-color: var(--surface-color);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 0.0625rem solid var(--border-color);
+}
