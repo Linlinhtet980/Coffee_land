@@ -62,6 +62,8 @@ class User
             $_SESSION['user_point'] = $user['current_point'];
         }
     }
+
+    
     // Profile Update ပြုလုပ်ခြင်း
     public function updateProfile($userId, $data)
     {
