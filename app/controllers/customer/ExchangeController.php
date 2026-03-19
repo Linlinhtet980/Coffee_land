@@ -7,13 +7,16 @@ class ExchangeController
 {
     private $exchangeModel;
     private $userModel;
+    private $notificationModel;
 
     public function __construct($pdo)
     {
         require_once BASE_PATH . '/app/models/Exchange.php';
         require_once BASE_PATH . '/app/models/User.php';
+        require_once BASE_PATH . '/app/models/Notification.php';
         $this->exchangeModel = new Exchange($pdo);
         $this->userModel = new User($pdo);
+        $this->notificationModel = new Notification($pdo);
     }
 
     public function index($pdo)
@@ -78,6 +81,13 @@ class ExchangeController
 
             // Session point update လုပ်ခြင်း
             $_SESSION['user_point'] = $newPoints;
+
+            $this->notificationModel->create(
+                $userId,
+                'Reward Redeemed',
+                "Successfully exchanged for '" . $item['name'] . "'. -" . $item['point_required'] . " Points.",
+                'system'
+            );
 
             echo json_encode(['success' => true, 'message' => 'Exchanged successfully!', 'newPoints' => $newPoints]);
             exit;

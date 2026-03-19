@@ -7,13 +7,16 @@ class OrderController
 {
     private $orderModel;
     private $userModel;
+    private $notificationModel;
 
     public function __construct($pdo)
     {
         require_once BASE_PATH . '/app/models/Order.php';
         require_once BASE_PATH . '/app/models/User.php';
+        require_once BASE_PATH . '/app/models/Notification.php';
         $this->orderModel = new Order($pdo);
         $this->userModel = new User($pdo);
+        $this->notificationModel = new Notification($pdo);
     }
 
     // AJAX Checkout ကိုင်တွယ်ခြင်း
@@ -45,6 +48,15 @@ class OrderController
                 if ($totalPoints > 0) {
                     $this->userModel->addPoints($_SESSION['user_id'], $totalPoints);
                 }
+
+                // 3. Notification ဖန်တီးခြင်း
+                $qty_sum = array_sum(array_column($items, 'quantity'));
+                $this->notificationModel->create(
+                    $_SESSION['user_id'],
+                    'Order Successful',
+                    "Your order of $qty_sum item(s) was placed successfully. You earned +$totalPoints Points.",
+                    'order'
+                );
 
                 echo json_encode([
                     'success' => true, 

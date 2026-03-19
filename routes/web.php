@@ -59,6 +59,16 @@ elseif ($path === 'exchange') {
     $controller = new ExchangeController($pdo);
     $controller->index($pdo);
 } 
+elseif ($path === 'notifications/get') {
+    require_once BASE_PATH . '/app/controllers/customer/NotificationController.php';
+    $controller = new NotificationController($pdo);
+    $controller->getLatest();
+} 
+elseif ($path === 'notifications/read') {
+    require_once BASE_PATH . '/app/controllers/customer/NotificationController.php';
+    $controller = new NotificationController($pdo);
+    $controller->markRead();
+} 
 else {
     http_response_code(404);
     echo "<h1>404 - Page Not Found</h1>";

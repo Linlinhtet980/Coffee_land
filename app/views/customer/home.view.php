@@ -17,10 +17,10 @@
         </div>
 
         <ul>
-            <li><a href="#">Home</a></li>
+            <li><a href="<?= APP_URL ?>/">Home</a></li>
             <li><a href="#menu">Menu</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
 
         <div class="nav-right">
@@ -30,9 +30,28 @@
                     <p><?= $_SESSION['user_point'] ?? 0 ?> Points</p>
                 </div>
 
-                <div class="noti-order">
-                    <i class="fa-solid fa-bell"></i>
-                    <span class="badge">0</span>
+                <div class="cart-icon" title="Your Cart" onclick="toggleCart()">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="badge" id="cartBadge" style="display: none;">0</span>
+                </div>
+
+                <div class="noti-dropdown-container">
+                    <div class="noti-order" onclick="toggleNotiDropdown()" title="Notifications">
+                        <i class="fa-solid fa-bell"></i>
+                        <span class="badge" id="notiBadge" style="display: none;">0</span>
+                    </div>
+                    
+                    <div class="noti-dropdown" id="notiDropdown">
+                        <div class="noti-header">
+                            <h3>Notifications</h3>
+                            <button onclick="markAllNotiRead(event)" class="mark-read-btn">Mark all read</button>
+                        </div>
+                        <div class="noti-body" id="notiList">
+                            <div style="text-align: center; padding: 2rem; color: var(--text-dim);">
+                                <i class="fas fa-spinner fa-spin"></i> Loading...
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="profile" onclick="location.href='<?= APP_URL ?>/logout'" title="Click to Logout">
@@ -122,6 +141,125 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="about-content">
+            <div class="about-text">
+                <h2>Our Story</h2>
+                <p>At Coffee Land, we believe that every cup of coffee tells a story. From the carefully selected beans from local farms to the precise roasting process, our passion is to bring you the perfect brew. Our journey started in a small roastery with a dream to connect communities through exceptional coffee.</p>
+                <div class="about-features">
+                    <div class="feature">
+                        <i class="fa-solid fa-leaf"></i>
+                        <span>100% Organic</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fa-solid fa-mug-hot"></i>
+                        <span>Premium Roasts</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fa-solid fa-people-carry-box"></i>
+                        <span>Fair Trade</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="<?= ASSET_URL ?>/images/about-coffee.jpg" alt="About Coffee Land" onerror="this.src='https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&q=80&w=800';">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="section-header">
+            <h2>Get In Touch</h2>
+            <p>We'd love to hear from you. Reach out to us for any inquiries.</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h3>Location</h3>
+                        <p>123 Coffee Street, Brewville, Yangon</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <h3>Phone</h3>
+                        <p>+95 9 123 456 789</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h3>Email</h3>
+                        <p>hello@coffeeland.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-clock"></i>
+                    <div>
+                        <h3>Opening Hours</h3>
+                        <p>Mon-Sun: 8:00 AM - 10:00 PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-container">
+                <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for getting in touch! We will reply soon.');">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="add-btn" style="margin-top:0;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo">
+                    <i class="fa-solid fa-coffee"></i>
+                    <span>Coffee Land</span>
+                </div>
+                <p>Bringing you the finest coffee experience, one cup at a time.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="<?= APP_URL ?>/">Home</a></li>
+                    <li><a href="#menu">Our Menu</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Coffee Land. All rights reserved.</p>
+        </div>
+    </footer>
+
     <!-- Cart Modal -->
     <div class="modal-overlay" id="cartModal">
         <div class="modal-box" style="max-width: 500px;">
@@ -156,12 +294,104 @@
             </div>
             <h2 style="margin-bottom: 1rem;">Order Successful!</h2>
             <p style="color: var(--text-dim); margin-bottom: 2rem;">Your points have been added to your account.</p>
-            <button class="auth-btn" onclick="location.reload()">Great!</button>
+            <button class="auth-btn" onclick="document.getElementById('successModal').style.display='none'">Great!</button>
         </div>
     </div>
 
+
+
     <script>
         let cart = [];
+        let notiDropdownOpen = false;
+
+        async function fetchNotifications() {
+            try {
+                const res = await fetch('<?= APP_URL ?>/notifications/get');
+                const result = await res.json();
+                if (result.success) {
+                    const badge = document.getElementById('notiBadge');
+                    if (result.unreadCount > 0) {
+                        badge.innerText = result.unreadCount;
+                        badge.style.display = 'block';
+                    } else {
+                        badge.style.display = 'none';
+                    }
+
+                    const list = document.getElementById('notiList');
+                    if (result.notifications.length === 0) {
+                        list.innerHTML = '<p style="text-align:center; color:var(--text-dim); padding: 2rem;">No notifications yet.</p>';
+                        return;
+                    }
+
+                    list.innerHTML = result.notifications.map(n => `
+                        <div class="noti-item ${n.is_read == 0 ? 'unread' : ''}" onclick="markNotiRead(${n.id}, event)">
+                            <div class="noti-icon">
+                                <i class="fas fa-${n.type === 'order' ? 'shopping-bag' : (n.type==='system' ? 'gift' : 'bell')}"></i>
+                            </div>
+                            <div class="noti-content">
+                                <p class="noti-title">${n.title}</p>
+                                <p class="noti-msg">${n.message}</p>
+                                <span class="noti-time">${new Date(n.created_at).toLocaleString()}</span>
+                            </div>
+                        </div>
+                    `).join('');
+                }
+            } catch (e) {
+                console.error("Failed to fetch notifications", e);
+            }
+        }
+
+        function toggleNotiDropdown() {
+            notiDropdownOpen = !notiDropdownOpen;
+            const dropdown = document.getElementById('notiDropdown');
+            if (notiDropdownOpen) {
+                dropdown.classList.add('show');
+                fetchNotifications();
+            } else {
+                dropdown.classList.remove('show');
+            }
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            const container = document.querySelector('.noti-dropdown-container');
+            if (container && !container.contains(e.target) && notiDropdownOpen) {
+                toggleNotiDropdown();
+            }
+        });
+
+        async function markNotiRead(id, e) {
+            if (e) e.stopPropagation();
+            try {
+                const res = await fetch('<?= APP_URL ?>/notifications/read', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({id: id})
+                });
+                const result = await res.json();
+                if (result.success) {
+                    fetchNotifications(); // refresh list
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        async function markAllNotiRead(e) {
+            if (e) e.stopPropagation();
+            try {
+                const res = await fetch('<?= APP_URL ?>/notifications/read', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({id: 'all'})
+                });
+                const result = await res.json();
+                if (result.success) {
+                    fetchNotifications();
+                }
+            } catch (e) { console.error(e); }
+        }
+
+        // Initial fetch
+        document.addEventListener('DOMContentLoaded', fetchNotifications);
 
         function addToCart(id, name, price, points) {
             <?php if (!isset($_SESSION['user_id'])): ?>
@@ -179,14 +409,20 @@
             updateCartUI();
             
             // Notification effect
-            const badge = document.querySelector('.noti-order .badge');
+            const badge = document.querySelector('.cart-icon .badge');
             badge.style.transform = 'scale(1.5)';
             setTimeout(() => badge.style.transform = 'scale(1)', 200);
         }
 
         function updateCartUI() {
             const count = cart.reduce((acc, item) => acc + item.quantity, 0);
-            document.querySelector('.noti-order .badge').innerText = count;
+            const _badge = document.getElementById('cartBadge');
+            if(count > 0) {
+                _badge.innerText = count;
+                _badge.style.display = 'block';
+            } else {
+                _badge.style.display = 'none';
+            }
 
             const list = document.getElementById('cartItemsList');
             let html = '';
@@ -201,15 +437,26 @@
 
                 html += `
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
-                        <div>
+                        <div style="flex: 1;">
                             <h4 style="margin:0; font-size: 1rem;">${item.name}</h4>
-                            <small style="color: var(--text-dim);">${item.quantity} x ${item.price.toLocaleString()} Ks</small>
+                            <small style="color: var(--text-dim);">${item.price.toLocaleString()} Ks</small>
                         </div>
-                        <div style="text-align: right;">
+                        
+                        <div style="display: flex; align-items: center; gap: 0.8rem; margin: 0 1rem;">
+                            <button class="qty-btn" onclick="updateQuantity(${index}, -1)">
+                                <i class="fas fa-minus" style="font-size: 0.8rem;"></i>
+                            </button>
+                            <span class="qty-display">${item.quantity}</span>
+                            <button class="qty-btn" onclick="updateQuantity(${index}, 1)">
+                                <i class="fas fa-plus" style="font-size: 0.8rem;"></i>
+                            </button>
+                        </div>
+
+                        <div style="text-align: right; min-width: 80px;">
                             <div style="font-weight: 700; color: var(--primary);">${subtotal.toLocaleString()} Ks</div>
                             <small style="color: #2ecc71;">+${points} Pts</small>
                         </div>
-                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#e74c3c; cursor:pointer; margin-left:10px;">
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#e74c3c; cursor:pointer; margin-left:15px; font-size: 1.1rem;">
                             <i class="fas fa-trash"></i>
                         </button>
                     </div>
@@ -226,12 +473,21 @@
             updateCartUI();
         }
 
+        function updateQuantity(index, change) {
+            if (cart[index].quantity + change > 0) {
+                cart[index].quantity += change;
+            } else {
+                removeFromCart(index);
+            }
+            updateCartUI();
+        }
+
         function toggleCart() {
             const modal = document.getElementById('cartModal');
             modal.style.display = (modal.style.display === 'flex') ? 'none' : 'flex';
         }
 
-        document.querySelector('.noti-order').onclick = toggleCart;
+        document.querySelector('.cart-icon').onclick = toggleCart;
 
         async function processCheckout() {
             if (cart.length === 0) return;
@@ -258,6 +514,16 @@
                 if (result.success) {
                     document.getElementById('cartModal').style.display = 'none';
                     document.getElementById('successModal').style.display = 'flex';
+                    
+                    fetchNotifications(); // Fetch latest notifications from DB
+                    
+                    if (result.new_points !== undefined) {
+                        const pointDisplay = document.querySelector('.show_point p');
+                        if (pointDisplay) {
+                            pointDisplay.innerText = result.new_points + ' Points';
+                        }
+                    }
+
                     cart = [];
                     updateCartUI();
                 } else {
