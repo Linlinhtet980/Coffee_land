@@ -62,4 +62,38 @@ class User
             $_SESSION['user_point'] = $user['current_point'];
         }
     }
+    // Profile Update ပြုလုပ်ခြင်း
+    public function updateProfile($userId, $data)
+    {
+        $query = "UPDATE users SET name = :name, email = :email";
+        $params = [
+            ':name'  => $data['name'],
+            ':email' => $data['email'],
+            ':userId' => $userId
+        ];
+
+        if (!empty($data['password'])) {
+            $query .= ", password = :password";
+            $params[':password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
+
+        if (!empty($data['profile_image'])) {
+            $query .= ", profile_image = :profile_image";
+            $params[':profile_image'] = $data['profile_image'];
+        }
+
+        $query .= " WHERE id = :userId";
+
+        $stmt = $this->pdo->prepare($query);
+        $result = $stmt->execute($params);
+
+        if ($result && isset($_SESSION['user_id']) && $_SESSION['user_id'] == $userId) {
+            $_SESSION['user_name'] = $data['name'];
+            if (!empty($data['profile_image'])) {
+                $_SESSION['user_image'] = $data['profile_image'];
+            }
+        }
+        
+        return $result;
+    }
 }

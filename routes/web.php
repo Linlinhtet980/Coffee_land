@@ -59,6 +59,11 @@ elseif ($path === 'exchange') {
     $controller = new ExchangeController($pdo);
     $controller->index($pdo);
 } 
+elseif ($path === 'profile/update') {
+    require_once BASE_PATH . '/app/controllers/ProfileController.php';
+    $controller = new ProfileController($pdo);
+    $controller->update();
+} 
 elseif ($path === 'notifications/get') {
     require_once BASE_PATH . '/app/controllers/customer/NotificationController.php';
     $controller = new NotificationController($pdo);

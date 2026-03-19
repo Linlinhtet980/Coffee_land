@@ -28,6 +28,7 @@ class AuthController
                 $_SESSION['user_name'] = $user['name'];
                 $_SESSION['user_role'] = $user['role'];
                 $_SESSION['user_point'] = $user['current_point'] ?? 0;
+                $_SESSION['user_image'] = $user['profile_image'] ?? null;
 
                 // Admin ဆိုရင် Admin Dashboard သို့ပို့မည်
                 if ($user['role'] === 'admin') {

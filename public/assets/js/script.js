@@ -117,4 +117,57 @@ window.onclick = function(event) {
     if (event.target == exchangeModal) {
         closeExchangeModal();
     }
+    
+    // Close admin dropdowns if clicked outside
+    if (!event.target.closest('.notification-icon') && !event.target.closest('.profile-wrapper')) {
+        const adminDropdowns = document.querySelectorAll('.admin-dropdown');
+        adminDropdowns.forEach(dropdown => {
+            dropdown.style.display = 'none';
+        });
+    }
+}
+
+// === Admin Header Search Filter & Dropdowns ===
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Search Filter (Only UI)
+    const searchInput = document.querySelector('.search-bar input');
+    if (searchInput) {
+        searchInput.addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.item-row');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(term)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
+});
+
+// Admin Dropdown Toggles
+function toggleAdminNoti(event) {
+    if (event) event.stopPropagation();
+    const dropdown = document.getElementById('adminNotiDropdown');
+    const profileDropdown = document.getElementById('adminProfileDropdown');
+    
+    if (profileDropdown) profileDropdown.style.display = 'none';
+    
+    if (dropdown) {
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
+}
+
+function toggleAdminProfile(event) {
+    if (event) event.stopPropagation();
+    const dropdown = document.getElementById('adminProfileDropdown');
+    const notiDropdown = document.getElementById('adminNotiDropdown');
+    
+    if (notiDropdown) notiDropdown.style.display = 'none';
+    
+    if (dropdown) {
+        dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
+    }
 }
