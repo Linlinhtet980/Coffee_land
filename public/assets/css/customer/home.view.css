@@ -864,5 +864,153 @@ nav ul li a:hover {
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
 }
+
+/* Payment Modal (Receipt Style) */
+.receipt-modal {
+    background-color: var(--bg, #1a1a1a); /* Match app bg */
+    padding: 1.5rem 1.5rem;
+    border-radius: 12px;
+    color: var(--text, #fff);
+    font-family: inherit;
+    max-width: 380px;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    border: 1px solid var(--border, #333);
+}
+.receipt-header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.receipt-header i {
+    font-size: 2rem;
+    color: var(--text-dim, #ccc);
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+.receipt-header h2 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 0.5px;
+    color: var(--text, #fff);
+    opacity: 0.9;
+}
+.receipt-header p {
+    color: var(--text-dim, #bbb);
+    margin: 0.2rem 0 0 0;
+    font-size: 0.85rem;
+}
+.receipt-info {
+    background: rgba(255, 255, 255, 0.05); /* Subtle light background on dark */
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: var(--text-dim, #ccc);
+    margin-bottom: 1rem;
+}
+.receipt-divider-dashed {
+    border-top: 1px dashed var(--border, #444);
+    margin: 1rem 0;
+}
+.receipt-divider-solid {
+    border-top: 1px solid var(--border, #444);
+    margin: 0.8rem 0;
+}
+.receipt-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+.receipt-table th {
+    text-align: left;
+    color: var(--text, #fff);
+    font-weight: 600;
+    padding-bottom: 0.6rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+.receipt-table th.center { text-align: center; }
+.receipt-table th.right { text-align: right; }
+.receipt-table td {
+    padding: 0.5rem 0;
+    color: var(--text-dim, #ccc);
+}
+.receipt-table td.center { text-align: center; color: var(--text, #fff); }
+.receipt-table td.right { text-align: right; font-weight: 600; color: var(--text-dim, #ccc); }
+
+.receipt-subtotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    color: var(--text-dim, #ccc);
+    margin: 0.8rem 0;
+}
+.receipt-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text, #fff);
+    margin-top: 0.8rem;
+}
+.payment-methods {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+    margin: 1.2rem 0 1rem 0;
+}
+.method-btn {
+    padding: 0.8rem 0;
+    border: 1px solid var(--border, #444);
+    background: transparent;
+    color: var(--text, #fff);
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+.method-btn.active {
+    background: var(--primary, #e67e22);
+    color: #fff;
+    border-color: var(--primary, #e67e22);
+}
+.confirm-pay-btn {
+    width: 100%;
+    padding: 1rem;
+    background: var(--primary, #e67e22);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    transition: opacity 0.2s;
+}
+.confirm-pay-btn:hover {
+    opacity: 0.9;
+}
+.cancel-order-btn {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: var(--text-dim, #bbb);
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+.cancel-order-btn:hover {
+    color: var(--text, #fff);
+    text-decoration: underline;
+}
+
