@@ -128,6 +128,7 @@ class Item
                 Categories.name  AS category_name,
                 Items.n_price,
                 Items.e_price,
+                Items.event_id,
                 Items.point_reward,
                 Items.status
             FROM Items

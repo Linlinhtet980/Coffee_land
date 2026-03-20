@@ -115,7 +115,7 @@
                             </div>
                             <div class="price-row">
                                 <div class="price-box">
-                                    <?php if ($item['e_price']): ?>
+                                    <?php if ($item['event_id'] && $item['e_price']): ?>
                                         <span class="old-price">
                                             <?= number_format($item['n_price']) ?> Ks
                                         </span>
@@ -129,7 +129,7 @@
                                     <?php endif; ?>
                                 </div>
                             </div>
-                            <button class="add-btn" onclick="addToCart(<?= $item['id'] ?>, '<?= addslashes($item['item_name']) ?>', <?= $item['e_price'] ?: $item['n_price'] ?>, <?= $item['point_reward'] ?>)">Order Now</button>
+                            <button class="add-btn" onclick="addToCart(<?= $item['id'] ?>, '<?= addslashes($item['item_name']) ?>', <?= ($item['event_id'] && $item['e_price']) ? $item['e_price'] : $item['n_price'] ?>, <?= $item['point_reward'] ?>)">Order Now</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
